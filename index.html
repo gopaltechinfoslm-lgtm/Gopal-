@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ta">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1565c0">
+  <meta name="description" content="தமிழில் நேரலை HLS சேனல்களையும் உங்கள் சாதனத்தின் வீடியோக்களையும் இயக்குங்கள்.">
+  <title>Gopalakrishnan Salem — TV & வீடியோக்கள்</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+  <style>
+    :root{color-scheme:light;--bg:#f6f3ee;--card:#fff;--tx:#1b1620;--mut:#716979;--ac:#1565c0;--ac2:#ff8f00;--line:#e7e1ea;--live:#d32f2f;--focus:#1565c0;--shadow:0 12px 40px rgba(0,0,0,.1)}
+    :root[data-theme="dark"]{color-scheme:dark;--bg:#0e0b12;--card:#1a1522;--tx:#f4eef8;--mut:#b2a8bb;--ac:#42a5f5;--ac2:#ffb300;--line:#332b3d;--live:#ef5350;--focus:#90caf9;--shadow:0 12px 40px rgba(0,0,0,.28)}
+    @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0e0b12;--card:#1a1522;--tx:#f4eef8;--mut:#b2a8bb;--ac:#42a5f5;--ac2:#ffb300;--line:#332b3d;--live:#ef5350;--focus:#90caf9;--shadow:0 12px 40px rgba(0,0,0,.28)}}
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html{-webkit-text-size-adjust:100%;scrollbar-gutter:stable}body{margin:0 auto;max-width:680px;min-height:100vh;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(40px + env(safe-area-inset-bottom,0px));background:var(--bg);color:var(--tx);font-family:"Noto Sans Tamil",system-ui,sans-serif}button,input{font:inherit}button{color:inherit;border:0;background:none;cursor:pointer}button:focus-visible,input:focus-visible,.row:focus-visible{outline:2px solid var(--focus);outline-offset:3px}header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}h1{font-size:clamp(17px,5vw,21px);margin:0;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.actions{display:flex;gap:8px;align-items:center}.pill{padding:9px 15px;border-radius:99px;background:linear-gradient(90deg,var(--ac),var(--ac2));color:#fff;font-weight:650;font-size:14px;white-space:nowrap}.iconbtn{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:var(--card);font-size:18px}.player{padding:14px;background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}.vidwrap{position:relative;aspect-ratio:16/9;background:#000;border-radius:18px;overflow:hidden;margin-bottom:12px}.vidwrap video{width:100%;height:100%;display:block;object-fit:contain;background:#000}.placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:#fff;background:linear-gradient(135deg,rgba(0,0,0,.8),rgba(0,0,0,.55));font-size:15px;line-height:1.7;z-index:1}.placeholder[hidden],.livebadge[hidden]{display:none}.livebadge{position:absolute;top:10px;left:10px;background:var(--live);color:#fff;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:700;letter-spacing:.5px;z-index:2}.pulse{animation:blink 1.6s ease-in-out infinite}@keyframes blink{50%{opacity:.4}}.title{font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.subtitle{color:var(--mut);font-size:13px;margin-top:3px;min-height:1.4em}.tabs{display:flex;gap:8px;margin:20px 0 10px}.tabs button{padding:8px 14px;border-radius:99px;border:1px solid var(--line);font-size:13px;color:var(--mut)}.tabs button[aria-selected="true"]{background:var(--tx);color:var(--bg);border-color:var(--tx)}.list{display:grid;gap:2px}.row{display:flex;align-items:center;gap:12px;padding:10px;border-radius:14px;cursor:pointer}.row:hover,.row:focus-visible{background:var(--card)}.row.cur{background:var(--card);border:1px solid var(--line)}.thumb{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;flex:none}.info{flex:1;min-width:0}.rowtitle{font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rowsub{font-size:12px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.del{color:var(--mut);font-size:17px;padding:9px;flex:none;line-height:1;border-radius:50%}.del:hover{color:var(--live);background:var(--bg)}.empty{text-align:center;color:var(--mut);padding:30px 10px;line-height:1.8}.hint{text-align:center;color:var(--mut);font-size:12px;margin:16px 0 0}.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:380px){body{padding-left:12px;padding-right:12px}.player{padding:10px}.pill{padding:8px 11px;font-size:13px}.iconbtn{width:38px;height:38px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📺 Gopalakrishnan Salem</h1>
+    <div class="actions">
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="தோற்றத்தை மாற்று" title="தோற்றத்தை மாற்று">◐</button>
+      <button class="pill" id="addBtn" type="button">+ சேர்</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="player" aria-label="வீடியோ பிளேயர்">
+      <div class="vidwrap">
+        <video id="video" controls playsinline preload="metadata" aria-label="வீடியோ"></video>
+        <div class="livebadge" id="liveBadge" hidden>● LIVE</div>
+        <div class="placeholder" id="placeholder">▶ ஒரு சேனல் அல்லது வீடியோவைத் தேர்ந்தெடுக்கவும்</div>
+      </div>
+      <div class="title" id="nowTitle">Gopalakrishnan Salem</div>
+      <div class="subtitle" id="status" role="status" aria-live="polite">நேரலை டிவி & உள்ளூர் வீடியோ</div>
+    </section>
+
+    <div class="tabs" role="tablist" aria-label="உள்ளடக்க வகை">
+      <button id="liveTab" type="button" role="tab" aria-selected="true" aria-controls="list">நேரலை டிவி</button>
+      <button id="videosTab" type="button" role="tab" aria-selected="false" aria-controls="list">வீடியோக்கள்</button>
+    </div>
+    <div id="list" class="list" role="list" aria-live="polite"></div>
+    <p class="hint">Space விசையை அழுத்தி இயக்கம் / இடைநிறுத்தம் செய்யலாம்.</p>
+  </main>
+
+  <input type="file" id="fileInput" accept="video/*" multiple hidden>
+  <script>
+    (() => {
+      'use strict';
+      const $ = id => document.getElementById(id);
+      const video = $('video');
+      const storage = {
+        get(key, fallback) { try { const value = JSON.parse(localStorage.getItem(key)); return value ?? fallback; } catch { return fallback; } },
+        set(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch {} }
+      };
+      const DEFAULT_CHANNELS = [
+        { name: 'NASA TV (டெமோ)', url: 'https://ntv1.akamaized.net/hls/live/2014075/NASA-NTV1-HLS/master.m3u8' },
+        { name: 'Big Buck Bunny (டெமோ)', url: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8' },
+        { name: 'Apple Sample (டெமோ)', url: 'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8' },
+        { name: 'Mux Test (டெமோ)', url: 'https://test-streams.mux.dev/pts_shift/master.m3u8' }
+      ];
+      const validChannels = value => Array.isArray(value) ? value.filter(item => item && typeof item.name === 'string' && typeof item.url === 'string' && /^https?:\/\//i.test(item.url)) : null;
+      let channels = validChannels(storage.get('gs-channels', null));
+      if (channels === null) { channels = DEFAULT_CHANNELS.slice(); storage.set('gs-channels', channels); }
+      let files = [];
+      let hls = null;
+      let tab = 'live';
+      let current = null;
+      let playToken = 0;
+      const hue = text => { let value = 0; for (const char of text) value = (value * 31 + char.charCodeAt(0)) % 360; return value; };
+      const safeUrl = raw => { try { const url = new URL(raw); return ['http:', 'https:'].includes(url.protocol) ? url.href : null; } catch { return null; } };
+      const destroyHls = () => { if (hls) { hls.destroy(); hls = null; } };
+      const setStatus = (title, message) => { $('nowTitle').textContent = title; $('status').textContent = message; };
+      const setPlaceholder = (show, message) => { $('placeholder').hidden = !show; if (message) $('placeholder').textContent = message; };
+      const updateBadge = active => { $('liveBadge').hidden = !active; $('liveBadge').classList.toggle('pulse', active); };
+      const listItems = () => tab === 'live' ? channels : files;
+
+      function render() {
+        const list = $('list');
+        const items = listItems();
+        if (!items.length) {
+          list.innerHTML = `<div class="empty">${tab === 'live' ? 'சேனல்கள் இல்லை. “+ சேர்” அழுத்தி ஸ்ட்ரீம் URL சேர்க்கவும்.' : 'வீடியோக்கள் இல்லை. “+ சேர்” அழுத்தி உங்கள் சாதனத்திலிருந்து வீடியோக்களைச் சேர்க்கவும்.'}</div>`;
+          return;
+        }
+        list.innerHTML = items.map((item, index) => {
+          const kind = tab;
+          const isCurrent = current?.kind === kind && current.index === index;
+          const color = hue(item.name);
+          const label = tab === 'live' ? '📡' : '🎬';
+          const sub = tab === 'live' ? (isCurrent ? '● நேரலையில்' : 'நேரலை ஸ்ட்ரீம்') : (isCurrent ? 'இப்போது இயங்குகிறது' : 'உள்ளூர் வீடியோ');
+          return `<div class="row ${isCurrent ? 'cur' : ''}" data-index="${index}" role="listitem" tabindex="0" aria-label="${escapeHtml(item.name)}; இயக்க தேர்ந்தெடுக்கவும்">
+            <div class="thumb" style="background:linear-gradient(135deg,hsl(${color},70%,48%),hsl(${(color + 50) % 360},75%,53%))" aria-hidden="true">${label}</div>
+            <div class="info"><div class="rowtitle">${escapeHtml(item.name)}</div><div class="rowsub">${sub}</div></div>
+            <button class="del" type="button" data-delete="${index}" aria-label="${escapeHtml(item.name)}-ஐ நீக்கு" title="நீக்கு">✕</button>
+          </div>`;
+        }).join('');
+      }
+      function escapeHtml(text) { return String(text).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char])); }
+
+      function stopPlayback(resetTitle = true) {
+        ++playToken;
+        destroyHls();
+        video.pause(); video.removeAttribute('src'); video.load();
+        current = null; updateBadge(false); setPlaceholder(true, '▶ ஒரு சேனல் அல்லது வீடியோவைத் தேர்ந்தெடுக்கவும்');
+        if (resetTitle) setStatus('Gopalakrishnan Salem', 'நேரலை டிவி & உள்ளூர் வீடியோ');
+        render();
+      }
+      function playLive(index) {
+        const channel = channels[index]; if (!channel) return;
+        const url = safeUrl(channel.url);
+        if (!url) { setStatus(channel.name, '⚠ சரியான HTTP(S) ஸ்ட்ரீம் URL இல்லை'); return; }
+        const token = ++playToken;
+        current = {kind:'live', index};
+        setStatus(channel.name, 'நேரலை டிவி — இணைக்கிறது…');
+        setPlaceholder(false); updateBadge(true); render();
+        destroyHls(); video.pause(); video.removeAttribute('src'); video.load();
+        if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = url;
+          video.play().then(() => { if (token === playToken) setStatus(channel.name, 'நேரலை டிவி'); }).catch(() => { if (token === playToken) setStatus(channel.name, 'இயக்க Play பொத்தானை அழுத்தவும் அல்லது ஸ்ட்ரீமைச் சரிபார்க்கவும்'); });
+          return;
+        }
+        if (window.Hls && Hls.isSupported()) {
+          const instance = new Hls({enableWorker:true}); hls = instance;
+          instance.loadSource(url); instance.attachMedia(video);
+          instance.on(Hls.Events.MANIFEST_PARSED, () => { if (token === playToken) video.play().catch(() => setStatus(channel.name, 'இயக்க Play பொத்தானை அழுத்தவும்')); });
+          instance.on(Hls.Events.ERROR, (_event, data) => {
+            if (token !== playToken || !data.fatal) return;
+            if (data.type === Hls.ErrorTypes.NETWORK_ERROR) { setStatus(channel.name, 'நெட்வொர்க் பிழை — மீண்டும் முயற்சிக்கிறது…'); instance.startLoad(); }
+            else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) instance.recoverMediaError();
+            else { destroyHls(); updateBadge(false); setStatus(channel.name, '⚠ ஸ்ட்ரீம் இயக்க முடியவில்லை. URL அல்லது CORS ஆதரவைச் சரிபார்க்கவும்.'); setPlaceholder(true, '⚠ இந்த ஸ்ட்ரீமை இயக்க முடியவில்லை'); }
+          });
+        } else {
+          updateBadge(false); setStatus(channel.name, '⚠ இந்த உலாவியில் HLS ஆதரவு இல்லை'); setPlaceholder(true, '⚠ இந்த உலாவியில் HLS ஆதரவு இல்லை');
+        }
+      }
+      function playVideo(index) {
+        const item = files[index]; if (!item) return;
+        ++playToken; destroyHls(); current = {kind:'videos', index};
+        setStatus(item.name, 'உள்ளூர் வீடியோ'); setPlaceholder(false); updateBadge(false); render();
+        video.pause(); video.src = item.url; video.load();
+        video.play().catch(() => setStatus(item.name, 'இயக்க Play பொத்தானை அழுத்தவும்'));
+      }
+      function changeTab(next) {
+        tab = next;
+        const live = next === 'live';
+        $('liveTab').setAttribute('aria-selected', String(live)); $('videosTab').setAttribute('aria-selected', String(!live));
+        render();
+      }
+      $('liveTab').onclick = () => changeTab('live');
+      $('videosTab').onclick = () => changeTab('videos');
+      $('addBtn').onclick = () => {
+        if (tab === 'videos') { $('fileInput').click(); return; }
+        const name = prompt('சேனல் பெயர்:', 'என் டிவி'); if (!name?.trim()) return;
+        const rawUrl = prompt('HLS ஸ்ட்ரீம் URL (.m3u8):', 'https://'); if (!rawUrl?.trim()) return;
+        const url = safeUrl(rawUrl.trim());
+        if (!url) { alert('சரியான HTTP அல்லது HTTPS URL உள்ளிடவும்.'); return; }
+        channels.push({name:name.trim(), url}); storage.set('gs-channels', channels); render();
+      };
+      $('fileInput').onchange = event => {
+        for (const file of event.target.files) {
+          if (!file.type.startsWith('video/')) continue;
+          files.push({name:file.name.replace(/\.[^.]+$/, '') || file.name, url:URL.createObjectURL(file)});
+        }
+        event.target.value = ''; render();
+      };
+      $('list').onclick = event => {
+        const deleteButton = event.target.closest('[data-delete]');
+        if (deleteButton) {
+          const index = Number(deleteButton.dataset.delete);
+          if (tab === 'live') {
+            channels.splice(index, 1); storage.set('gs-channels', channels);
+            if (current?.kind === 'live') { if (current.index === index) stopPlayback(); else if (current.index > index) current.index--; }
+          } else {
+            const item = files[index]; if (!item) return;
+            URL.revokeObjectURL(item.url); files.splice(index, 1);
+            if (current?.kind === 'videos') { if (current.index === index) stopPlayback(); else if (current.index > index) current.index--; }
+          }
+          render(); return;
+        }
+        const row = event.target.closest('[data-index]'); if (!row) return;
+        const index = Number(row.dataset.index); tab === 'live' ? playLive(index) : playVideo(index);
+      };
+      $('list').onkeydown = event => {
+        if (event.target.closest('[data-delete]')) return;
+        const row = event.target.closest('[data-index]');
+        if (row && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); const index = Number(row.dataset.index); tab === 'live' ? playLive(index) : playVideo(index); }
+      };
+      video.onerror = () => {
+        if (!video.currentSrc) return;
+        const item = current?.kind === 'videos' ? files[current.index] : null;
+        if (item) setStatus(item.name, '⚠ வீடியோவை இயக்க முடியவில்லை');
+        else if (current?.kind === 'live') setStatus(channels[current.index]?.name || 'நேரலை டிவி', '⚠ ஸ்ட்ரீம் பிழை. URL, நெட்வொர்க், அல்லது CORS ஆதரவைச் சரிபார்க்கவும்.');
+      };
+      video.onvolumechange = () => storage.set('gs-vol', video.volume);
+      video.volume = Math.min(1, Math.max(0, Number(storage.get('gs-vol', .9)) || 0));
+      $('themeBtn').onclick = () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next; storage.set('gs-theme', next);
+      };
+      const savedTheme = storage.get('gs-theme', null); if (savedTheme === 'light' || savedTheme === 'dark') document.documentElement.dataset.theme = savedTheme;
+      document.addEventListener('keydown', event => {
+        if (/^(INPUT|TEXTAREA|SELECT)$/.test(event.target.tagName) || event.target.isContentEditable) return;
+        if (event.code === 'Space') { event.preventDefault(); if (video.paused) video.play().catch(() => {}); else video.pause(); }
+      });
+      window.addEventListener('pagehide', () => { destroyHls(); for (const item of files) URL.revokeObjectURL(item.url); });
+      render();
+    })();
+  </script>
+</body>
+</html>
